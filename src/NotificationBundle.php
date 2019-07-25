@@ -8,6 +8,7 @@
 
 namespace Demroos\NotificationBundle;
 
+use Demroos\NotificationBundle\DependencyInjection\Compiler\NotificationExtractorCollectorPass;
 use Demroos\NotificationBundle\DependencyInjection\Compiler\NotificationTypeCollectorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -22,6 +23,7 @@ class NotificationBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new NotificationTypeCollectorPass());
+        $container->addCompilerPass(new NotificationExtractorCollectorPass());
     }
 
 }
