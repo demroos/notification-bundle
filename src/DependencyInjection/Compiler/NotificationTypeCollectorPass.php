@@ -8,7 +8,6 @@
 
 namespace Demroos\NotificationBundle\DependencyInjection\Compiler;
 
-use Demroos\NotificationBundle\Manager\NotificationManager;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -29,8 +28,8 @@ class NotificationTypeCollectorPass implements CompilerPassInterface
         foreach ($taggedServices as $id => $tags) {
             foreach ($tags as $tag => $attr) {
                 $definition->addMethodCall('addEntity', [
-                    new Reference($id),
-                    $attr['entity']
+                    $attr['entity'],
+                    new Reference($id)
                 ]);
             }
         }

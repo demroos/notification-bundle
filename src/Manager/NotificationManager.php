@@ -45,6 +45,10 @@ class NotificationManager implements NotificationReceiverInterface, EntityCollec
 
     public function addEntity($entity, $class)
     {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
         $this->entities[$entity] = $class;
     }
 
