@@ -1,0 +1,50 @@
+{
+    "name": "demroos/notification-bundle",
+    "version": "1.0.0",
+    "description": "Synfony bundle for controll notification",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ewgeniy Kiselev",
+            "email": "demroos@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "doctrine/cache": "v1.8.0",
+        "jms/serializer-bundle": "^2.4",
+        "symfony/config": "^4.2",
+        "symfony/dependency-injection": "^4.2",
+        "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.2",
+        "symfony/validator": "^4.2",
+        "symfony/yaml": "^4.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Demroos\\NotificationBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Demroos\\NotificationBundle\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check": "phpcs src --standard=psr2 -sp"
+    }
+}

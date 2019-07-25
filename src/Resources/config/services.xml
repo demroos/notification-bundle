@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="notification.manager" class="Demroos\NotificationBundle\Manager\NotificationManager" public="false">
+            <argument type="service" id="validator"/>
+            <argument type="service" id="jms_serializer.serializer"/>
+        </service>
+        <service id="Demroos\NotificationBundle\Manager\NotificationManagerInterface" alias="notification.manager"/>
+        <service id="Demroos\NotificationBundle\Manager\EntityCollectionInterface" alias="notification.manager"/>
+        <service id="Demroos\NotificationBundle\Manager\ExtractorCollectionInterface" alias="notification.manager"/>
+    </services>
+
+</container>
