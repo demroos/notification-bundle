@@ -2,26 +2,10 @@
 
 ### Register Entity
 
-Add tag to service
+Add to config `notification.yml`
 ```yaml
-services:
-    your_entity:
-      tags: { name: notification.entity, entity: entity_name}
+notification:
+  entities:
+    - { name: entity_name, class: App\NotificationClass }
 
-```
-
-Impliment interface `NotificationEntityInterface`
-```php
-<?php
-
-use \Demroos\NotificationBundle\Entity\NotificationEntityInterface;
-
-class YourEntity implements NotificationEntityInterface {
-    
-    public function getEntityName(): string
-    {
-        return 'entity_name';
-    }
-    
-}
 ```

@@ -26,9 +26,17 @@ class NotificationExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
+
+        $managerDefinition = $container->getDefinition('notification.manager');
+        foreach ($config['entities'] as $entityDefinition) {
+            $managerDefinition->addMethodCall('addEntity', [
+                $entityDefinition['name'],
+                $entityDefinition['class']
+            ]);
+        }
     }
 }
