@@ -5,14 +5,18 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="notification.default_extractor" class="Demroos\NotificationBundle\MetaExtractor\DefaultMetaExtractor" public="false">
+            <argument type="service" id="validator"/>
+            <tag name="notification.extractor"/>
+        </service>
         <service id="notification.manager" class="Demroos\NotificationBundle\Manager\NotificationManager" public="false">
             <argument type="service" id="validator"/>
             <argument type="service" id="jms_serializer.serializer"/>
         </service>
-        <service id="Demroos\NotificationBundle\Manager\NotificationManagerInterface" alias="notification.manager"/>
-        <service id="Demroos\NotificationBundle\Manager\EntityCollectionInterface" alias="notification.manager"/>
-        <service id="Demroos\NotificationBundle\Manager\ExtractorCollectionInterface" alias="notification.manager"/>
-        <service id="Demroos\NotificationBundle\Manager\NotificationReceiverInterface" alias="notification.manager"/>
+        <service id="Demroos\NotificationBundle\Manager\NotificationManagerInterface" alias="notification.manager" public="false"/>
+        <service id="Demroos\NotificationBundle\Manager\EntityCollectionInterface" alias="notification.manager" public="false"/>
+        <service id="Demroos\NotificationBundle\Manager\ExtractorCollectionInterface" alias="notification.manager" public="false"/>
+        <service id="Demroos\NotificationBundle\Manager\NotificationReceiverInterface" alias="notification.manager" public="false"/>
     </services>
 
 </container>
