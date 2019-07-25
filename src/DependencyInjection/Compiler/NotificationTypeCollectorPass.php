@@ -18,11 +18,11 @@ class NotificationTypeCollectorPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has(NotificationManager::class)) {
+        if (!$container->has('notification.manager')) {
             return;
         }
 
-        $definition = $container->getDefinition(NotificationManager::class);
+        $definition = $container->getDefinition('notification.manager');
 
         $taggedServices = $container->findTaggedServiceIds('notification.entity');
 
