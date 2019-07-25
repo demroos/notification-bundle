@@ -12,6 +12,7 @@
         <service id="Demroos\NotificationBundle\Manager\NotificationManagerInterface" alias="notification.manager"/>
         <service id="Demroos\NotificationBundle\Manager\EntityCollectionInterface" alias="notification.manager"/>
         <service id="Demroos\NotificationBundle\Manager\ExtractorCollectionInterface" alias="notification.manager"/>
+        <service id="Demroos\NotificationBundle\Manager\NotificationReceiverInterface" alias="notification.manager"/>
     </services>
 
 </container>
