@@ -16,7 +16,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "doctrine/cache": "v1.8.0",
-        "jms/serializer-bundle": "^2.4",
+        "jms/serializer-bundle": "^2.4 | ^3.3",
         "symfony/config": "^4.2",
         "symfony/dependency-injection": "^4.2",
         "symfony/flex": "^1.0",
