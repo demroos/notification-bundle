@@ -12,6 +12,7 @@
         <service id="notification.manager" class="Demroos\NotificationBundle\Manager\NotificationManager" public="false">
             <argument type="service" id="validator"/>
             <argument type="service" id="jms_serializer.serializer"/>
+            <tag name="monolog.logger" channel="notifications"/>
         </service>
         <service id="Demroos\NotificationBundle\Manager\NotificationManagerInterface" alias="notification.manager" public="false"/>
         <service id="Demroos\NotificationBundle\Manager\EntityCollectionInterface" alias="notification.manager" public="false"/>

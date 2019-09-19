@@ -12,6 +12,7 @@ use Demroos\NotificationBundle\Exception\NotificationException;
 use Demroos\NotificationBundle\MetaExtractor\MetaExtractorInterface;
 use Demroos\NotificationBundle\MetaExtractor\MetaInfo;
 use JMS\Serializer\ArrayTransformerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -28,17 +29,22 @@ class NotificationManager implements NotificationReceiverInterface, EntityCollec
     /** @var MetaExtractorInterface[] */
     protected $extractors = [];
 
+    /** @var LoggerInterface */
+    protected $logger;
+
     protected $entities = [];
 
     /**
      * NotificationManager constructor.
      * @param ValidatorInterface $validator
      * @param ArrayTransformerInterface $transformer
+     * @param LoggerInterface $logger
      */
-    public function __construct(ValidatorInterface $validator, ArrayTransformerInterface $transformer)
+    public function __construct(ValidatorInterface $validator, ArrayTransformerInterface $transformer, LoggerInterface $logger)
     {
         $this->validator = $validator;
         $this->transformer = $transformer;
+        $this->logger = $logger;
 
         $this->entities = [];
     }
@@ -94,6 +100,8 @@ class NotificationManager implements NotificationReceiverInterface, EntityCollec
 
     public function handleRequest(Request $request)
     {
+        $this->logger->info($request->getContent());
+
         foreach ($this->extractors as $extractor) {
             if ($result = $extractor->extract($request)) {
                 return $this->createObject($result);
