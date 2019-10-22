@@ -45,6 +45,10 @@
     },
     "scripts": {
         "test": "phpunit",
-        "check": "phpcs src --standard=psr2 -sp"
+        "check": "phpcs src --standard=psr2 -sp",
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
     }
 }

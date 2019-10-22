@@ -18,6 +18,13 @@
         <service id="Demroos\NotificationBundle\Manager\EntityCollectionInterface" alias="notification.manager" public="false"/>
         <service id="Demroos\NotificationBundle\Manager\ExtractorCollectionInterface" alias="notification.manager" public="false"/>
         <service id="Demroos\NotificationBundle\Manager\NotificationReceiverInterface" alias="notification.manager" public="false"/>
+
+<!--        Notification Sender-->
+        <service id="notification.sender" class="Demroos\NotificationBundle\Sender\NotificationSender" public="false">
+            <argument type="service" id="jms_serializer.serializer"/>
+            <argument type="service" id="service_container"/>
+            <tag name="monolog.logger" channel="outgoing_notifications"/>
+        </service>
     </services>
 
 </container>
