@@ -11,7 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class NotificationSender implements NotificationSenderInterface, LoggerAwareInterface
 {
-    private $entityName;
     /**
      * @var ArrayTransformerInterface
      */
@@ -50,32 +49,32 @@ class NotificationSender implements NotificationSenderInterface, LoggerAwareInte
         $this->logger = $logger;
     }
 
-    protected function createNotification($entity)
+    protected function createNotification($entityName, $entity)
     {
         /** @var SerializationContext $context */
         $context = SerializationContext::create()
-            ->setGroups([sprintf('%s.notification', $this->entityName)]);
+            ->setGroups([sprintf('%s.notification', $entityName)]);
         $payload = $this->transformer->toArray($entity, $context);
 
         $notification = [
-            'entity' => $this->entityName,
+            'entity' => $entityName,
             'payload' => $payload
         ];
 
         return json_encode($notification);
     }
 
-    public function send($entity, $id)
+    public function send($entityName, $entity, $id)
     {
         try {
-            $notification = $this->createNotification($entity);
+            $notification = $this->createNotification($entityName, $entity);
             $this->logger->debug($notification);
 
-            $producer = $this->container->get(sprintf("old_sound_rabbit_mq.%s_producer", $this->entityName));
+            $producer = $this->container->get(sprintf("old_sound_rabbit_mq.%s_producer", $entityName));
 
             $producer->publish(
                 $notification,
-                sprintf("%s.%n", $this->entityName, $id),
+                sprintf("%s.%n", $entityName, $id),
                 [],
                 [
                     'sub.all' => true, // todo refactor
@@ -83,7 +82,7 @@ class NotificationSender implements NotificationSenderInterface, LoggerAwareInte
                 ]
             );
 
-            $this->logger->info(sprintf('Notification sent, name: %s, id: %s', $this->entityName, $id));
+            $this->logger->info(sprintf('Notification sent, name: %s, id: %s', $entityName, $id));
         } catch (\Throwable $e) {
             $this->logger->critical(
                 $e->getMessage(),
@@ -91,15 +90,6 @@ class NotificationSender implements NotificationSenderInterface, LoggerAwareInte
                     'user' => $id
                 ]
             );
-        }    }
-
-    /**
-     * @param mixed $entityName
-     * @return NotificationSender
-     */
-    public function setEntityName($entityName)
-    {
-        $this->entityName = $entityName;
-        return $this;
+        }
     }
 }

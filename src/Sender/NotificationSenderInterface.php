@@ -5,5 +5,5 @@ namespace Demroos\NotificationBundle\Sender;
 
 interface NotificationSenderInterface
 {
-    public function send($entity, $id);
+    public function send($entityName, $entity, $id);
 }
