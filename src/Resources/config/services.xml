@@ -25,6 +25,9 @@
             <argument type="service" id="service_container"/>
             <tag name="monolog.logger" channel="outgoing_notifications"/>
         </service>
+
+        <service id="Demroos\NotificationBundle\Sender\NotificationSender" alias="notification.sender" public="false"/>
+        <service id="Demroos\NotificationBundle\Sender\NotificationSenderInterface" alias="notification.sender" public="false"/>
     </services>
 
 </container>
