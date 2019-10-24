@@ -29,11 +29,13 @@ class NotificationSender implements NotificationSenderInterface, LoggerAwareInte
      * NotificationSender constructor.
      * @param ArrayTransformerInterface $transformer
      * @param ContainerInterface $container
+     * @param LoggerInterface $logger
      */
-    public function __construct(ArrayTransformerInterface $transformer, ContainerInterface $container)
+    public function __construct(ArrayTransformerInterface $transformer, ContainerInterface $container, LoggerInterface $logger)
     {
         $this->transformer = $transformer;
         $this->container = $container;
+        $this->logger = $logger;
     }
 
     /**
