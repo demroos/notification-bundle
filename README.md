@@ -142,3 +142,10 @@ $notificationSender
     ->setEntityName('order')
     ->send($order, $id);
 ```
+
+## Version Support
+
+| Notification Bundle |  PHP  | Symfony      |
+|---------------------|-------|--------------|
+| [1.1] (develop)     | ^8.0  |  ^4.3\|^5.0  |
+| [1.0] (1.0.x)       | ^7.3  |     ^4.3     |

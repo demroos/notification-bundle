@@ -15,6 +15,7 @@ use Demroos\NotificationBundle\Tests\BaseTestCase;
 use Demroos\NotificationBundle\Tests\TestEntity;
 use JMS\Serializer\SerializerBuilder;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Validator\Validation;
 
 class NotificationManagerTest extends BaseTestCase
@@ -22,7 +23,7 @@ class NotificationManagerTest extends BaseTestCase
     /** @var NotificationManager */
     protected $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -30,7 +31,8 @@ class NotificationManagerTest extends BaseTestCase
             Validation::createValidatorBuilder()
                 ->enableAnnotationMapping()
                 ->getValidator(),
-            SerializerBuilder::create()->build()
+            SerializerBuilder::create()->build(),
+            $this->createMock(LoggerInterface::class)
         );
     }
 

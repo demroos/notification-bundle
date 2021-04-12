@@ -31,7 +31,7 @@ class DefaultMetaExtractorTest extends BaseTestCase
         $this->assertEquals($data['payload'], $meta->getPayload());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
