@@ -1,6 +1,5 @@
 {
     "name": "demroos/notification-bundle",
-    "version": "1.1.2",
     "description": "Synfony bundle for controll notification",
     "type": "symfony-bundle",
     "license": "MIT",
