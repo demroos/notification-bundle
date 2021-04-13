@@ -10,6 +10,7 @@ namespace Demroos\NotificationBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -30,6 +31,11 @@ class NotificationExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
+
+        if(isset($config['sender'])) {
+            $senderDef = new Definition($config['sender']);
+            $container->setDefinition('notification.sender', $senderDef);
+        }
 
         $managerDefinition = $container->getDefinition('notification.manager');
         foreach ($config['entities'] as $entityDefinition) {

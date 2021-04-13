@@ -19,10 +19,10 @@ notification:
 
 ```
 
-Change Sender class
+Change NotificationSenderInterface implementation class
 ```yaml
-parameters:
-    notification.sender.class: 'Class implement NotificationSenderInterface'
+notification:
+    sender: 'Class implement NotificationSenderInterface'
 ```
 
 Create a controller class for your incoming notifications. 
