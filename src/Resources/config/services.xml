@@ -5,7 +5,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="notification.sender.class">Demroos\NotificationBundle\Sender\NotificationSender</parameter>
+        <parameter key="notification.sender.class">Demroos\NotificationBundle\Sender\RabbitNotificationSender</parameter>
     </parameters>
     <services>
         <service id="notification.default_extractor" class="Demroos\NotificationBundle\MetaExtractor\DefaultMetaExtractor" public="false">
