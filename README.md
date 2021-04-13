@@ -19,6 +19,12 @@ notification:
 
 ```
 
+Change Sender class
+```yaml
+parameters:
+    notification.sender.class: 'Class implement NotificationSenderInterface'
+```
+
 Create a controller class for your incoming notifications. 
 The controller will handle ALL incoming notifications and dispatch a corresponding message using the above configuration.
 ```php

@@ -9,7 +9,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class NotificationSender implements NotificationSenderInterface, LoggerAwareInterface
+class RabbitNotificationSender implements NotificationSenderInterface, LoggerAwareInterface
 {
     /**
      * @var ArrayTransformerInterface
