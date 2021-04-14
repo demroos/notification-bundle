@@ -33,8 +33,7 @@ class NotificationExtension extends Extension
         $loader->load('services.xml');
 
         if(isset($config['sender'])) {
-            $senderDef = new Definition($config['sender']);
-            $container->setDefinition('notification.sender', $senderDef);
+            $container->setAlias('notification.sender', $config['sender']);
         }
 
         $managerDefinition = $container->getDefinition('notification.manager');
