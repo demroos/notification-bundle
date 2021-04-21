@@ -30,12 +30,15 @@ class DefaultMetaExtractor implements MetaExtractorInterface
         $data = json_decode($request->getContent(), true);
 
         $dataConstraint = new Assert\Collection([
-            'entity' => [
-                new Assert\NotBlank(),
-                new Assert\NotNull()
-            ],
-            'payload' => [
-                new Assert\Type('array')
+            'allowExtraFields' => true,
+            'fields' => [
+                'entity' => [
+                    new Assert\NotBlank(),
+                    new Assert\NotNull()
+                ],
+                'payload' => [
+                    new Assert\Type('array')
+                ]
             ]
         ]);
 
